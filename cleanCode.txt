@@ -1,1 +1,273 @@
-Question 1
+﻿Question 1
+ find the corrected code below. I removed unnecessary assignments to a duration variable as well as adding required parameters .I added a helper method as well called timeInMilliseconds .Added the throws clause to doSomething() method to propagate the exception to the caller
+
+// Code 1
+public class MyTest {
+
+public  long computeDurationInMilliseconds(int hours, int minutes, int seconds) {
+
+return  timeInMilliseconds(hours,minutes,seconds);
+}
+
+private long timeInMilliseconds (int hours, int minutes, int seconds){
+
+return (((hours * 60) + minutes) * 60 + seconds ) * 1000 
+}
+public void doSomething()  throws RuntimeException{
+
+RuntimeException myException = new RuntimeException();
+throw myException;
+}
+}
+
+// Code 2 
+
+I added meaning to the variables as well as making 42 constant
+
+public class MyClass {
+
+private final int FORTY_TWO_YEARS = 42;
+
+public int compute(int rateToBeUsedInPayingDebt) {
+return rateToBeUsedInPayingDebt * FORTY_TWO_YEARS ;
+}
+}
+
+
+// Code 3
+again two letter variables are code smell, be discriptive in your variable names.This is a utils class, make it public
+
+public class StringUtils {
+
+public static String concatenate(String firstName, String Surname) {
+return firstName + firstName;
+}
+}
+
+
+
+
+Code 4
+removed java.lang package it is implicitly provided.Removed duplicate imports for SomeType class.Made member variables private
+
+package my.company;
+
+import my.company.SomeClass;
+import java.io.File;
+
+import my.company2.SomeType;
+
+class ExampleClass {
+
+private  String someString;
+private SomeType something;
+}
+
+Code 5
+// again be explicit in your method names and variables.Throwable is a checked exception, use RunTimeException
+
+public class Example2Class{
+public void throwMyMessageError(String wrongName) throws RuntimeException {
+throw new RuntimeException("My Message");
+}
+}
+
+Code 6
+// That is not a good name for a class
+added an  IOException in throws clause in case the file does not exist
+
+public class ImpiloDomain {
+
+public Collection<User> listUsers()  throws IOException{
+File userList = new File("/home/mylogin/Dev/users.txt");
+Collection<User> users = parse(userList);
+return users;
+}
+}
+
+Code 7
+
+always give discriptive names
+use the conventional way
+public static void main
+
+public class MyWork{
+
+public static void main(String[] args) {
+System.out.println("It works");
+}
+}
+Code 8
+// names of parameters should depict the action to be carried out or the resource not just string.
+added static to run method
+
+public class MyForest{
+public static void run() {
+prepare("action1");
+execute("action1");
+release("action1");
+}
+public static void prepare(String string){
+System.out.println(string+" prepared");
+}
+public static void execute(String string){
+System.out.println(string+" executed");
+}
+public static void release(String string){
+System.out.println(string+" released");
+}
+
+}
+
+Code 9
+one of the classes must be public in java, and that class name should match the source file name as well
+
+public class ParentClass {
+public boolean doSomething(){
+System.out.println("Parent doing something");
+}
+}
+class FirstChildClass extends ParentClass {
+public boolean doSomething(){
+System.out.println("First born doing something");
+}
+}
+
+code 10
+place doSomething in an interface and allow others to implement it
+
+public Interface  MikeClass{
+void doSomething() ;
+}
+
+class MikeClassImpl{
+void doSomething(){
+System.out.println("I am doing it");
+}
+void doIt(){
+doSomething()
+}}
+Code 11
+// only one class should be public in one source file. Inlclude getters and setters with @Data lombok annotation
+
+class Address {
+}
+@Data
+public class Person implements Serializable {
+private static final long SERIAL_VERSION_UID = 1905122041950251207L;
+private String name;
+private Address address;
+}
+
+Code 12
+variable names are smelly,use meaningful names.create a constant as well,make logic meaningful.
+
+public class Mine{
+
+public static final TWELVE=12
+int chose12IfNumberIsNot1(int number) {
+int twelve = 12;
+if (number == 1) {
+return  b;
+} 
+
+return number;
+}
+}
+
+Code 13
+// make the constant static
+public class Myclass {
+public final static int THRESHOLD = 3;
+}
+
+Code 14
+// changed String to B
+//retun T
+class A {
+void process(List<A> list) {
+list.stream()
+.filter(a -> a instanceof B)
+.map(a -> (B) a)
+.map(b -> b.<B>getObject())
+.forEach(b -> { System.out.println(b); });
+}
+}
+class B extends A {
+<T> T getObject() {
+return T;
+}
+}
+
+Code 15
+// added public static to the constants
+public interface Status {
+public static int OPEN = 1;
+public static int CLOSED = 2;
+}
+
+Code 16
+// remove the diamond parameters on the right side
+public class Baidu{
+List<String> strings = new ArrayList<>();
+Map<String,List<Integer>> map = new HashMap<>();
+}
+
+Code 17
+
+use discriptive words for variable and method names
+create static methods referenced in the static context
+public class MyBaidu{
+
+public static void main(String[] args)
+Boolean biSexual = getBoolean();
+if (biSexual) {
+giveMedicine();
+} else {
+giveAppointment();
+}
+}
+
+Code 18
+// give an else block for something to be printed on the console
+// remove nested if statements, return earlier if null
+public class FirstBaidu{
+public void checkFile(File file) {
+if (file == null){
+return ;}
+if (file.isFile() || file.isDirectory()) {
+System.out.println("File is okay");
+} else {
+System.out.println("File is neighter File or Directory");
+}
+}
+}
+
+Code 19
+// remove toString() method, it already called on the object implicitly
+public class HelloWorld{
+
+public void myMethod(){
+String message = new Random().nextBoolean()?"hello world": "My Cat";
+
+message+=" done";
+System.out.println(message);
+}
+}
+
+Code 20
+// use switch cases, the doSomething () is always true, it was flagged correctly.
+public class MyRandom{
+public static void main(String[] args){
+if (booleanMethod() == true) { /* ... */ }
+if (booleanMethod() == false) { /* ... */ }
+if (booleanMethod() || false) { /* ... */ }
+doSomething(!false);
+doSomething(booleanMethod() == true);
+booleanVariable = booleanMethod() ? true : false;
+booleanVariable = booleanMethod() ? true : exp;
+booleanVariable = booleanMethod() ? false : exp;
+booleanVariable = booleanMethod() ? exp : true;
+booleanVariable = booleanMethod() ? exp : false;
+}
+}
